@@ -16,9 +16,8 @@ def exchange(corrency_to, amount):
 
 
 def save_history(corrency_to, exchange_rate, amount, result):
-    file = open('history.txt', 'a')
-    file.write(f"{corrency_to},{exchange_rate[corrency_to]},{amount},{result}\n")
-    file.close()
+    with open('history.txt', 'a') as f:
+        f.write(f"{corrency_to},{exchange_rate[corrency_to]},{amount},{result}\n")
 
 
 @app.route('/')
@@ -46,9 +45,9 @@ def eur_to_php(amount):
 
 @app.route('/history/')
 def get_history():
-    file_ = open("history.txt")
-    file = file_.readlines()
-    return render_template("history.html", file=file)
+    with open("history.txt")as f:
+        history = f.readlines()
+        return render_template("history.html", file=history)
 
 
 if __name__ == '__main__':
