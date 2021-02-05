@@ -5,8 +5,15 @@
     <title>H I S T O R Y</title>
 </head>
 <body>
-{% for elem in file %}
-  <ul>{{elem}}</ul>
+{% if static==1 %}
+{% for line in history %}
+<ul>{{line.currency_to}}, {{line.rates}}, {{line.amount}}, {{line.result}}</ul>
 {% endfor %}
+{% endif %}
+{% if static==0 %}
+{% for line in history %}
+<ul>{{line.currency_to}}, {{line.count_res}}, {{line.sum_result}}</ul>
+{% endfor %}
+{% endif %}
 </body>
 </html>
